@@ -108,6 +108,7 @@ font-weight: 400;
 display: flex;
   align-items: center;
   gap: 0.5rem;
+  
 
 
 > .humidityIcon {
@@ -118,7 +119,6 @@ font-size: 3rem;
 
 .windIcon {
 font-size: 2rem;
-margin-right: 10px;
 }
 
 
@@ -134,7 +134,6 @@ z-index: 9999;
 
 .loadingIcon {
 font-size: 3rem;
-/* DO LATER NOT WHEN CREATING UI */
 animation: spin 2s linear infinite;
 }
 p {
@@ -145,7 +144,6 @@ font-family: "Josefin Sans", sans-serif;
 }
 
 
-/* DO LATER NOT WHEN CREATING UI */
 @keyframes spin {
 from {
 transform: rotate(0deg);

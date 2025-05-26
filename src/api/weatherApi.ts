@@ -16,4 +16,16 @@ export const fetchCurrentWeather = async (
         console.error("Error fetching Weather Data: ", error);
         throw error;
     }
+}
+
+export const fetchWeatherDataFromSearch = async(city:string) => {
+       try{
+            const url = `${api_endpoint}weather?q=${city}&appid=${api_key}&units=metric`
+            const searchResponse = await axios.get<WeatherDataTypes>(url)
+            const currentSearchResults:WeatherDataTypes = searchResponse.data
+            return {currentSearchResults}
+        } catch (error){
+            console.error("data not found");
+            throw error;
+         }
     }

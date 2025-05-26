@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import DisplayWeather from './components/DisplayWeather';
+//import DisplayWeather from './components/DisplayWeather';
 import WeatherPage from './views/WeatherPage';
 
 function App() {

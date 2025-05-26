@@ -1,14 +1,23 @@
 import React from "react";
+import { useState } from "react";
 import { useWeather } from "../hooks/useWeather";
 import WeatherDisplay from "../components/WeatherDisplay";
 
 const WeatherPage = () => {
-  const { data, loading } = useWeather();
+  const [searchCity, setSearchCity] = useState("");
+  const { data, loading, searchCityHandler } = useWeather();
 
-  if (loading) return <p>Loading...</p>;
-  if (!data) return <p>Failed to fetch weather.</p>;
 
-  return <WeatherDisplay data={data} />;
+
+  return (
+    <WeatherDisplay 
+      data={data} 
+      loading={loading} 
+      searchCity={searchCity}
+      setSearchCity={setSearchCity}
+      onSearch={searchCityHandler}
+  />
+  );
 };
 
 export default WeatherPage;
