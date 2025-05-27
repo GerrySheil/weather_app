@@ -23,9 +23,16 @@ background-color: rgba(255, 255, 255, 0.75);
   gap: 1.5rem;
 }
 
-
 .searchArea {
-display: flex;
+  .searchButton{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+  } 
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;

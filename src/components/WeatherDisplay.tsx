@@ -31,9 +31,23 @@ const DisplayWeather: React.FC<WeatherDisplayProps> = ({ data, loading, onSearch
                 placeholder="Search..."
                 value= {searchCity}
                 onChange={(e) => setSearchCity(e.target.value)}
+                onKeyDown={(e) => {
+                    if(e.key ==="Enter" && searchCity.trim()) {
+                        onSearch(searchCity.trim());
+                    }
+                }}  
 />
             < div className="searchCircle">
-                 <SearchIcon className='searchIcon' onClick={()=>onSearch(searchCity)}/>
+                <button 
+                aria-label="search" 
+                className="searchButton"
+                onClick={()=> { 
+                    if (searchCity.trim()) {
+                        onSearch(searchCity.trim());
+                }}}>
+                    <SearchIcon className='searchIcon' />
+                </button>
+                 
             </div>
 
         </div>
