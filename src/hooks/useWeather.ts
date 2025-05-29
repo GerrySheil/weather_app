@@ -5,24 +5,24 @@ import { fetchWeatherDataFromSearch } from "../api/weatherApi";
 
 
 export const useWeather = () => {
-    const [data, setData] = useState<WeatherDataTypes | null>(null);
-    const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<WeatherDataTypes | null>(null);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true);
-        navigator.geolocation.getCurrentPosition((position) => {
-            const {latitude, longitude} = position.coords;
-            fetchCurrentWeather(latitude, longitude)
-                .then((res) => setData(res))
-                .finally(() => setLoading(false))
-        },
-    (error)=>{
+  useEffect(() => {
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      fetchCurrentWeather(latitude, longitude)
+        .then((res) => setData(res))
+        .finally(() => setLoading(false))
+    },
+      (error) => {
         console.error("Geolocation error:", error);
-            setLoading(false);
-    });
-    }, []);
+        setLoading(false);
+      });
+  }, []);
 
-    const searchCityHandler = async (city: string) => {
+  const searchCityHandler = async (city: string) => {
     if (city.trim() === "") return;
     try {
       setLoading(true);
@@ -35,5 +35,5 @@ export const useWeather = () => {
     }
   };
 
-    return { data, loading, searchCityHandler};
+  return { data, loading, searchCityHandler };
 }

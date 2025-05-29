@@ -22,73 +22,74 @@ const WindIcon = TiWeatherWindy as React.FC<IconBaseProps>;
 const LoadingIcon = RiLoaderFill as React.FC<IconBaseProps>;
 
 const DisplayWeather: React.FC<WeatherDisplayProps> = ({ data, loading, onSearch, searchCity, setSearchCity }) => {
-  return (
-    <MainWrapper>
-      <div className="container">
-        <div className="searchArea">
-            <input
-                type="text"
-                placeholder="Search..."
-                value= {searchCity}
-                onChange={(e) => setSearchCity(e.target.value)}
-                onKeyDown={(e) => {
-                    if(e.key ==="Enter" && searchCity.trim()) {
-                        onSearch(searchCity.trim());
-                    }
-                }}  
-/>
-            < div className="searchCircle">
-                <button 
-                aria-label="search" 
-                className="searchButton"
-                onClick={()=> { 
-                    if (searchCity.trim()) {
-                        onSearch(searchCity.trim());
-                }}}>
-                    <SearchIcon className='searchIcon' />
-                </button>
-                 
-            </div>
+    return (
+        <MainWrapper>
+            <div className="container">
+                <div className="searchArea">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchCity}
+                        onChange={(e) => setSearchCity(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && searchCity.trim()) {
+                                onSearch(searchCity.trim());
+                            }
+                        }}
+                    />
+                    < div className="searchCircle">
+                        <button
+                            aria-label="search"
+                            className="searchButton"
+                            onClick={() => {
+                                if (searchCity.trim()) {
+                                    onSearch(searchCity.trim());
+                                }
+                            }}>
+                            <SearchIcon className='searchIcon' />
+                        </button>
 
-        </div>
-        {loading ?(
-        <div className="loading">
-            <LoadingIcon className="loadingIcon"/>
-            <p>loading</p>
-        </div>        
-        ): data ?(
-        <>
-            <div className="weatherArea">
-                <h1>{data.name}</h1>
-                <span>{data.sys.country}</span>
-            <div className="icon">
-                {iconChanger(data.weather[0].main).icon}
-            </div>
-                <h1>{data.main.temp.toFixed(0)}°C</h1>
-                <h2>{data.weather[0].main}</h2>
-            </div>
-            <div className="bottomInfoArea">
-                <div className="humidity">
-                    <HumidityIcon className="humidityIcon"></HumidityIcon>
-                    <div className="humidityInfo">
-                        <h1>{data.main.humidity}%</h1>
-                        <p>Humidity</p>
                     </div>
+
                 </div>
-                <div className="wind">
-                    <WindIcon className="windIcon"></WindIcon>
-                    <div className="windInfo">
-                        <h1>{data.wind.speed.toFixed(0)}km/h</h1>
-                        <p>Wind</p>
+                {loading ? (
+                    <div className="loading">
+                        <LoadingIcon className="loadingIcon" />
+                        <p>loading</p>
                     </div>
-                </div>
+                ) : data ? (
+                    <>
+                        <div className="weatherArea">
+                            <h1>{data.name}</h1>
+                            <span>{data.sys.country}</span>
+                            <div className="icon">
+                                {iconChanger(data.weather[0].main).icon}
+                            </div>
+                            <h1>{data.main.temp.toFixed(0)}°C</h1>
+                            <h2>{data.weather[0].main}</h2>
+                        </div>
+                        <div className="bottomInfoArea">
+                            <div className="humidity">
+                                <HumidityIcon className="humidityIcon"></HumidityIcon>
+                                <div className="humidityInfo">
+                                    <h1>{data.main.humidity}%</h1>
+                                    <p>Humidity</p>
+                                </div>
+                            </div>
+                            <div className="wind">
+                                <WindIcon className="windIcon"></WindIcon>
+                                <div className="windInfo">
+                                    <h1>{data.wind.speed.toFixed(0)}km/h</h1>
+                                    <p>Wind</p>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                ) :
+                    null}
             </div>
-        </>
-        ) :
-        null}
-        </div>
-    </MainWrapper>
-  );
+        </MainWrapper>
+    );
 };
 
 export default DisplayWeather;

@@ -7,16 +7,14 @@ const WeatherPage = () => {
   const [searchCity, setSearchCity] = useState("");
   const { data, loading, searchCityHandler } = useWeather();
 
-
-
   return (
-    <WeatherDisplay 
-      data={data} 
-      loading={loading} 
+    <WeatherDisplay
+      data={data}
+      loading={loading}
       searchCity={searchCity}
       setSearchCity={setSearchCity}
       onSearch={searchCityHandler}
-  />
+    />
   );
 };
 
